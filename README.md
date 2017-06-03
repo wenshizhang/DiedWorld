@@ -1,18 +1,21 @@
-#Died World
+# Died World
 
 
-##intro
+## intro
 
 This repo show a living world!
+
 It's cruel and beautiful!
+
 Respect for nature,Respect for universe!
+
 enjoy it!
 
 
-##build
+## build
 
 type "make" in shell to build the project;
 
-##run
+## run
 
 type ./DiedWorld to run it;
