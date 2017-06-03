@@ -1,2 +1,3 @@
 all:
-	@g++ -std=c++11 -o DiedWorld DiedWorld.cpp transVector.cpp Generation.cpp	
+	@g++ -std=c++11 -o DiedWorld DiedWorld.cpp transVector.cpp Generation.cpp
+	@echo "DiedWorld compile done"
