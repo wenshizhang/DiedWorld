@@ -5,6 +5,7 @@
 
 matrix_int InitGeneration();
 
+
 int main()
 {
 	matrix_int ret = InitGeneration();
