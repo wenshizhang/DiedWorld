@@ -15,6 +15,7 @@ void  Generation::nextGeneration()
 
 }
 
+
 matrix_int Generation::getDiedOrLive()
 {
 	int i,j;
