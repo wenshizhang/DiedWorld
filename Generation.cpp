@@ -1,9 +1,11 @@
 #include "Generation.h"
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
-vector<vector<int> > Generation::nextGeneration()
+void  Generation::nextGeneration()
 {
 	matrix_int newcellWorld;
 
@@ -15,17 +17,17 @@ vector<vector<int> > Generation::nextGeneration()
 matrix_int Generation::getDiedOrLive()
 {
 	int i,j;
-	matrix_int newcellWorld(col,vector<int >(row));
+	matrix_int newcellWorld(Col,vector<int >(Row));
 
-	for(i = 0;i < row;i++)
-		for(j = 0;j < col;j++)
-			newcellWorld[i][j] = calaCellState(int cellRow, int cellCol);
+	for(i = 0;i < Row;i++)
+		for(j = 0;j < Col;j++)
+			newcellWorld[i][j] = calcCellState(i,j);
 
 	return newcellWorld;
 
 }
 
-int Generation::calaCellState(int cellRow, int cellCol )
+int Generation::calcCellState(int cellRow, int cellCol )
 {
 	int i,j;
 	int neighbor;
@@ -33,18 +35,18 @@ int Generation::calaCellState(int cellRow, int cellCol )
 	for (i = -1; i<2;i++)			//row
 		for (j = -1; j<2 ;j++)			//col
 		{
-			if ((-1<cellRow+i<global_row)&&(-1<cellCol+j<global_row))
+			if ((-1<cellRow+i<Row)&&(-1<cellCol+j<Col))
 				neighbor += cellWorld[cellRow+i][cellCol+j];
-			if neighbor >= 3
+			if (neighbor >= 3)
 				return LIVE;
-			else if neighbor == 2
+			else if (neighbor == 2)
 				return UNCHANGE;
 			else
 				return DIED;
 		}
 }
 
-void update(matrix_int newcellWorld)
+void Generation::update(matrix_int newcellWorld)
 {
 	int i,j;
 
@@ -61,15 +63,17 @@ void update(matrix_int newcellWorld)
 		}
 }
 
-void show()
+void Generation::show()
 {
 	int i,j;
+	system("clear");
 	for(i = 0; i< Row;i++)
 	{
 		for(j = 0;j < Col;j++)
-			cout >> cellWorld[i][j];
-		cout>>"\n";
+			cout << cellWorld[i][j];
+		cout<<"\n";
 	}
-	clrscr();
+	this_thread::sleep_for(chrono::seconds(1));
+	system("clear");
 
 }
