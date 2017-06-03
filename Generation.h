@@ -1,7 +1,6 @@
 #ifndef __GENERATION_H
 #define __GENERATION_H
 
-
 #define UNCHANGE 0
 #define TO_LIVE	2
 #define TO_DIED	-2
