@@ -3,27 +3,29 @@
 
 
 #define UNCHANGE 0
-#define LIVE	1
-#define DIED	-1
+#define TO_LIVE	2
+#define TO_DIED	-2
 
 
 #include <vector>
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
 typedef vector<vector<int>> matrix_int;
+
 class Generation
 {
 	private:
 		vector<vector<int> > cellWorld;
-		int GnrtNum;
+		int GenerationNum;
 		int Row;
 		int Col;
 	public:
-		Generation():GnrtNum(0),Row(0),Col(0){};
-		Generation(vector<vector<int> > &cw):cellWorld(cw),GnrtNum(0){
+		Generation():GenerationNum(0),Row(0),Col(0){};
+		Generation(vector<vector<int> > &cw):cellWorld(cw),GenerationNum(0){
 			if(!cw.empty()&&!cw[0].empty()){
 				Col = cw.size();
 				Row = cw[0].size();
@@ -31,6 +33,7 @@ class Generation
 			else
 			{
 				cout<<"matrix empty!";
+				exit(1);
 			}
 		};
 		
@@ -40,10 +43,10 @@ class Generation
 		int calcCellState(int x,int y);
 		void update(matrix_int);
 
-		int getGnrtNum(){return GnrtNum;}
+		int getGenerationNum(){return GenerationNum;}
 		int getRow(){return Row;}
 		int getCol(){return Col;}
-		void resetCellWorld(vector<vector<int> > &cw){cellWorld = cw; GnrtNum = 0;}
+		void resetCellWorld(vector<vector<int> > &cw){cellWorld = cw; GenerationNum = 0;}
 		vector<vector<int> > getCellWorld(){return cellWorld;}
 		void show();
 };
